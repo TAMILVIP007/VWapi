@@ -31,7 +31,7 @@ async def weather_(
     if cache.has_key(cache_key):
         cache_entry = cache[cache_key]
 
-        if not cache_entry["expires"] <= int(time.time()):
+        if cache_entry["expires"] > int(time.time()):
             cache_entry["image"].seek(0)
             return Response(content=cache_entry["image"].read(), media_type="image/jpeg")
 
